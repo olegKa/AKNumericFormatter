@@ -109,8 +109,12 @@ static char UITextFieldIsFormatting;
       [self sendActionsForControlEvents:UIControlEventEditingChanged];
     }
   }
-  UITextPosition* newCaretPosition = [self positionFromPosition:self.beginningOfDocument offset:newCaretOffset];
-  self.selectedTextRange = [self textRangeFromPosition:newCaretPosition toPosition:newCaretPosition];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        UITextPosition* newCaretPosition = [self positionFromPosition:self.beginningOfDocument offset:newCaretOffset];
+        self.selectedTextRange = [self textRangeFromPosition:newCaretPosition toPosition:newCaretPosition];
+    });
+  
 
   self.isFormatting = NO;
   self.handleDeleteBackwards = NO;
