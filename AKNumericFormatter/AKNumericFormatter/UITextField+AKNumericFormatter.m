@@ -131,7 +131,7 @@ static char UITextFieldIsFormatting;
 
 -(void)alertDeleteBackwards
 {
-  self.handleDeleteBackwards = YES;
+    self.handleDeleteBackwards = self.text.length > 0;
 }
 
 @end
